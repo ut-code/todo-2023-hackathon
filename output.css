@@ -1,0 +1,12 @@
+/*body {
+    background-image: url("utc.png");
+    background-repeat: no-repeat;
+  }*/
+  .class1 {
+    /*background-color: gray;*/
+    display: flex;
+    width: 10px;
+    height: 10px;
+    align-items: center;
+    justify-content: center;
+  }
