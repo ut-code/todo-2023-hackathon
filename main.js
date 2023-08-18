@@ -1,26 +1,32 @@
 const fs = require("fs");
+const fsPromises = require("fs/promises");
 const ejs = require("ejs");
 const express = require("express");
 const app = express();
+const { PrismaClient } = require("@prisma/client");
+const client = new PrismaClient();
+
+const userId = 
+
+async function main(request, response) {
+    const tasks = await client.task.findMany({ userId: userId });
+    const template = fs.readFileSync("index.ejs", "utf8");
+    const html = ejs.render(template, { tasks: tasks });
+    response.send(html);
+  }
+
+  async function push(request, response, userId, name, due, isImportant) {
+    await client.task.create({ data: {  userId, name, due, isImportant} });
+    const tasks = await client.task.findMany({ userId: userId });
+    const template = fs.readFileSync("index.ejs", "utf8");
+    const html = ejs.render(template, { tasks: tasks });
+    response.send(html);
+  }
 
 app.use(express.urlencoded({ extended: true }));
 
-const tasks = [];
-class Task {
-    title;
-    deadline;
-    importance;
-    constructor(title, deadline, importance) {
-        this.title = title;
-        this.deadline = deadline;
-        this.importance = importance;
-    };
-};
-
 app.get("/", (request, response) => {
-    const template = fs.readFileSync("index.ejs", "utf8");
-    const html = ejs.render(template, {tasks: tasks});
-    response.send(html);
+    main(request, response);
 });
 
 app.post("/edit", (request, response) => {
@@ -28,9 +34,5 @@ app.post("/edit", (request, response) => {
 });
 
 app.post("/", (request, response) => {
-    const task = new Task(request.body.title, request.body.deadline, request.body.importance,);
-    tasks.push(task);
-    const template = fs.readFileSync("index.ejs", "utf8");
-    const html = ejs.render(template, {tasks: tasks});
-    response.send(html);
+    push(request, response, userId, request.body.name, request.body.due, request.body.isImportant);
 });
