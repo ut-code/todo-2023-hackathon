@@ -1,23 +1,22 @@
 const fs = require("fs");
-const fsPromises = require("fs/promises");
 const ejs = require("ejs");
 const express = require("express");
 const app = express();
 const { PrismaClient } = require("@prisma/client");
 const client = new PrismaClient();
 
-const userId = 
+const userId = 777
 
 async function main(request, response) {
-    const tasks = await client.task.findMany({ userId: userId });
+    const tasks = await client.task.findMany({ userId });
     const template = fs.readFileSync("index.ejs", "utf8");
     const html = ejs.render(template, { tasks: tasks });
     response.send(html);
   }
 
-  async function push(request, response, userId, name, due, isImportant) {
-    await client.task.create({ data: {  userId, name, due, isImportant} });
-    const tasks = await client.task.findMany({ userId: userId });
+async function push(request, response, userId, name, due, isImportant) {
+    await client.task.create({ data: {  userId, name, due, isImportant } });
+    const tasks = await client.task.findMany({ userId });
     const template = fs.readFileSync("index.ejs", "utf8");
     const html = ejs.render(template, { tasks: tasks });
     response.send(html);
