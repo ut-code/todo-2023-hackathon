@@ -5,7 +5,7 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 
-const tasks = []
+const tasks = [];
 class Task {
     name;
     deadline;
@@ -13,20 +13,20 @@ class Task {
     constructor(name, deadline, importance) {
         this.name = name;
         this.deadline = deadline;
-        this.importance = importance
-    }
-}
+        this.importance = importance;
+    };
+};
 
 app.get("/", (request, response) => {
-    response.send("hello")
+    response.send("hello");
 });
 
-app.post("/edit", () => {
+app.post("/edit", (request, response) => {
 });
 
 app.post("/", (request, response) => {
-    const task = new Task(request.body.name, request.body.deadline, request.body.importance,)
-    tasks.push(task)
+    const task = new Task(request.body.name, request.body.deadline, request.body.importance,);
+    tasks.push(task);
     const template = fs.readFileSync("index.ejs", "utf8");
     const html = ejs.render(template, {tasks: tasks});
 });
