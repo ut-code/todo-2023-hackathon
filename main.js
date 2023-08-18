@@ -35,3 +35,5 @@ app.post("/edit", (request, response) => {
 app.post("/", (request, response) => {
     push(request, response, userId, request.body.name, request.body.due, request.body.isImportant);
 });
+
+app.listen(3000);
