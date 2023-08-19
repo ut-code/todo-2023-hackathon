@@ -21,7 +21,7 @@
     <div style="margin-top: 20px; margin-left: 10%; margin-right: 10%; background-color: rgb(181, 231, 245);">
       <div class="p-3 m-1 border-0 bd-example m-0 border-0">
          <div class="dropdown-menu">
-          <form class="px-4 py-3" action="/" method="post">
+          <form class="px-4 py-3">
                <div class="mb-3">
                 <label for="exampleDropdownFormEmail1" class="form-label">予定</label>
                 <input type="text" class="form-control" id="exampleDropdownFormEmail1" placeholder="予定">
@@ -39,18 +39,28 @@
                   </label>
                 </div>
               </div>
-              
               <div class="dropdown" style="margin-bottom: 20px;">
                 カテゴリー: 
                 <button class="btn btn-secondary dropdown-toggle"  data-bs-toggle="dropdown" aria-expanded="false">
                   選択してください
                 </button>
-              
+                
                 <ul class="dropdown-menu">
+                  <% for (const category of categorys) { %>
+                  <li>
+                    <a class="dropdown-item" value=<% category %>>
+                      <%= category %>
+                    </a>
+                  </li>
+                  <% } %>
+                </ul>
+
+                <!-- <ul class="dropdown-menu">
                   <li><a class="dropdown-item" value="家庭">家庭</a></li>
                   <li><a class="dropdown-item" value="仕事">仕事</a></li>
                   <li><a class="dropdown-item" value="趣味">趣味</a></li>
-                </ul>
+                </ul> -->
+
               </div>
 
               <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
@@ -65,7 +75,10 @@
                   });
               </script>
 
+
+              <form action="/" method="post">
               <button type="submit" class="btn btn-primary">追加</button>
+              </form>
             </form>
           </div>
         </div>
