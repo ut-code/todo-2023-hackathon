@@ -22,14 +22,14 @@
     <div style="margin-top: 20px; margin-left: 10%; margin-right: 10%; background-color: rgb(181, 231, 245);">
       <div class="p-3 m-1 border-0 bd-example m-0 border-0">
          <div class="dropdown-menu">
-          <form class="px-4 py-3">
+          <form class="px-4 py-3" action="/output" method="post">
                <div class="mb-3">
                 <label for="exampleDropdownFormEmail1" class="form-label">ユーザーネーム</label>
-                <input type="text" class="form-control" id="exampleDropdownFormEmail1" placeholder="山田太郎">
+                <input type="text" class="form-control" id="exampleDropdownFormEmail1" placeholder="山田太郎" name="name">
               </div>
               <div class="mb-3">
                 <label for="exampleDropdownFormEmail1" class="form-label">パスワード</label>
-                <input type="password" class="form-control" id="exampleDropdownFormEmail1" placeholder="">
+                <input type="password" class="form-control" id="exampleDropdownFormEmail1" placeholder="" name="password">
               </div>
               <button type="submit" class="btn btn-primary">ログイン</button>
             </form>

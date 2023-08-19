@@ -7,8 +7,6 @@ const cookieParser = require("cookie-parser");
 const { PrismaClient } = require("@prisma/client");
 const client = new PrismaClient();
 
-const userId = 1;
-
 async function main(request, response, userId) {
   const tasks = await client.task.findMany({ where: { userId } });
   const template = fs.readFileSync("output.ejs", "utf8");
@@ -24,42 +22,29 @@ async function push(request, response, userId, name, due, isImportant) {
   response.send(html);
 }
 
+const userId = 1;
+
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static("static"));
 
 app.get("/", async (request, response) => {
   const template = fs.readFileSync("login.ejs", "utf8");
-  const login = ejs.render(template, { userNotFound: true, incorrectPassword: true });
+  const login = ejs.render(template);
   response.send(login);
 });
 
 app.post("/output", async (request, response) => {
-  let userNotFound = true;
-  const user = await client.User.findUnique({
-    where: { name: request.body.name },
-  });
-  if (user === undefined) {
-    const template = fs.readFileSync("login.ejs", "utf8");
-    const login = ejs.render( template, { userNotFound: false, incorrectPassword: true });
-    response.send(login);
-  } else if (user.password === request.body.password) {
-    const sessionId = await client.Session.findFirst({
-      where: { userId: user.id,},
-    });
-    response.cookie("session", sessionId.id);
-    main(request, response, sessionId.id)
-  } else {
-    const template = fs.readFileSync("login.ejs", "utf8");
-    const login = ejs.render( template, { userNotFound: true, incorrectPassword: false });
-    response.send(login);
-  }
+  main(request, response, userId);
 });
 
 app.post("/edit", (request, response) => {
+  const html = fs.readFileSync("input.html", "utf8");
+  response.send(html);
 });
 
-app.post("/output", (request, response) => {
+app.post("/push", (request, response) => {
+  console.log(request.body);
   push(
     request,
     response,
