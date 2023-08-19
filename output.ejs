@@ -28,7 +28,7 @@
                   <div class="container-fluid" style="text-align: center">
                     <a class="navbar-brand" href="#">
                       <img src="clock.svg" alt="sun" width="30" height="24" class="d-inline-block align-text-top">
-                      今は、<%= datetime %>です。
+                      <div id="current_date">
                     </a>
                   </div>
                 </nav>
@@ -70,7 +70,7 @@
                   <tr>
                     <td>
                       <form action="/edit" method="post">
-                        <button type="button" class="btn btn-primary">+</button>
+                        <button type="submit" class="btn btn-primary">+</button>
                       </form>
                      </td>
                     <td></td>
@@ -82,5 +82,6 @@
           </div>
           </div>
         </div>
+        <script src="./output.js"></script>
       </body>
 </html>
