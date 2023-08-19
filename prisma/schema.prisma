@@ -25,3 +25,8 @@ model Task {
   isImportant Boolean
   userId Int
 }
+
+model Session {
+  id     String @id // 一意でランダムなID
+  userId Int // User の ID
+}
