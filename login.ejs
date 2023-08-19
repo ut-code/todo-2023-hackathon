@@ -15,12 +15,11 @@
         <a class="navbar-brand" href="#">
             <h5>
           <img src="utc.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-          ToDoリスト</h5>
+          ToDoリスト <span class="badge bg-secondary">ログイン</span></h5>
         </a>
       </div>
     </nav>
     <div style="margin-top: 20px; margin-left: 10%; margin-right: 10%; background-color: rgb(181, 231, 245);">
-    <h1 style="padding: 0.5em; color: #000000; background: #fffaf4; border-left: solid 5px #5895ff;">ログイン画面</h1>  
       <div class="p-3 m-1 border-0 bd-example m-0 border-0">
          <div class="dropdown-menu">
           <form class="px-4 py-3">
@@ -33,11 +32,6 @@
                 <input type="password" class="form-control" id="exampleDropdownFormEmail1" placeholder="">
               </div>
               <button type="submit" class="btn btn-primary">ログイン</button>
-              <div class="mb-3" style="text-emphasis-color: red;">
-                <% if(userNotFound === false) {%>
-                  <%= "ユーザーネームまたはパスワードが異なります。"  %>
-                <% } %>
-              </div>
             </form>
           </div>
         </div>
