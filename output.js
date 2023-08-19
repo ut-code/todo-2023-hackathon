@@ -1,5 +1,5 @@
-date = new Date();
-year = date.getFullYear();
-month = date.getMonth() + 1;
-day = date.getDate();
-document.getElementById("current_date").innerHTML = month + "月" + day + "日";
+const date = new Date();
+const month = date.getMonth() + 1;
+const day = date.getDate();
+const dateDisplayElement = document.getElementById("dateDisplay");
+dateDisplayElement.textContent = `今日は${month}月${day}日です。`;
