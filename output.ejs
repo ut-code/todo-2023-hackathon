@@ -22,11 +22,25 @@
       <div class="p-3 m-1 border-0 bd-example m-0 border-0">
          <div class="dropdown-menu">
           <div class="px-4 py-3">
+            <div class="card" style="background-color: rgb(245, 245, 245);">
+              <div class="card-body">
+                <nav>
+                  <div class="container-fluid" style="text-align: center">
+                    <a class="navbar-brand" href="#">
+                      <img src="clock.svg" alt="sun" width="30" height="24" class="d-inline-block align-text-top">
+                      今は、<%= datetime %>です。
+                    </a>
+                  </div>
+                </nav>
+              </div>
+            </div>
+            <br>
             <table class="table">
               <thead>
                 <tr>
                   <th scope="col">予定</th>
                   <th scope="col">期日</th>
+                  <th scope="col"></th>
                   <th scope="col"></th>
                 </tr>
               </thead>
@@ -46,6 +60,11 @@
                         <% } %>
                       
                     </td>
+                    <td>
+                      <div style="text-align: center">
+                      <button type="button" class="btn-close" aria-label="Close"></button>
+                      </div>
+                    </td>
                   </tr>
                   <% } %>
                   <tr>
@@ -54,6 +73,7 @@
                         <button type="button" class="btn btn-primary">+</button>
                       </form>
                      </td>
+                    <td></td>
                     <td></td>
                     <td></td>
                   </tr>
