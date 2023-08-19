@@ -39,6 +39,43 @@
                   </label>
                 </div>
               </div>
+              <div class="dropdown" style="margin-bottom: 20px;">
+                カテゴリー: 
+                <button class="btn btn-secondary dropdown-toggle"  data-bs-toggle="dropdown" aria-expanded="false">
+                  選択してください
+                </button>
+                
+                <ul class="dropdown-menu">
+                  <% for (const category of categorys) { %>
+                  <li>
+                    <a class="dropdown-item" value=<% category %>>
+                      <%= category %>
+                    </a>
+                  </li>
+                  <% } %>
+                </ul>
+
+                <!-- <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" value="家庭">家庭</a></li>
+                  <li><a class="dropdown-item" value="仕事">仕事</a></li>
+                  <li><a class="dropdown-item" value="趣味">趣味</a></li>
+                </ul> -->
+
+              </div>
+
+              <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+              <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+              <script>
+                  $(function(){
+                      $('.dropdown-menu .dropdown-item').click(function(){
+                          var visibleItem = $('.dropdown-toggle', $(this).closest('.dropdown'));
+                          visibleItem.text($(this).attr('value'));
+                      });
+                  });
+              </script>
+
+
               <form action="/" method="post">
               <button type="submit" class="btn btn-primary">追加</button>
               </form>
