@@ -29,7 +29,8 @@ app.get("/", (request, response) => {
 });
 
 app.post("/edit", (request, response) => {
-    response.send(編集画面);
+    const html = fs.readFileSync("input.html", "utf8");
+    response.send(html);
 });
 
 app.post("/", (request, response) => {
