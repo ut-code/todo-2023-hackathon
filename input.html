@@ -24,21 +24,47 @@
           <form class="px-4 py-3" action="/" method="post">
                <div class="mb-3">
                 <label for="exampleDropdownFormEmail1" class="form-label">予定</label>
-                <input type="text" class="form-control" id="exampleDropdownFormEmail1" placeholder="予定" name="name">
+                <input type="text" class="form-control" id="exampleDropdownFormEmail1" placeholder="予定">
               </div>
               <div class="mb-3">
                 <label for="exampleDropdownFormPassword1" class="form-label">期日</label>
                 <br>
-                <input type="date" id="date" name="due" value="" />
+                <input type="date" id="date" name="select-date" value="" />
               </div>
               <div class="mb-3">
                 <div class="form-check">
-                  <input type="checkbox" class="form-check-input" id="dropdownCheck" name="isImportant">
+                  <input type="checkbox" class="form-check-input" id="dropdownCheck">
                   <label class="form-check-label" for="dropdownCheck">
                     重要
                   </label>
                 </div>
               </div>
+              
+              <div class="dropdown" style="margin-bottom: 20px;">
+                カテゴリー: 
+                <button class="btn btn-secondary dropdown-toggle"  data-bs-toggle="dropdown" aria-expanded="false">
+                  選択してください
+                </button>
+              
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" value="家庭">家庭</a></li>
+                  <li><a class="dropdown-item" value="仕事">仕事</a></li>
+                  <li><a class="dropdown-item" value="趣味">趣味</a></li>
+                </ul>
+              </div>
+
+              <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+              <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+              <script>
+                  $(function(){
+                      $('.dropdown-menu .dropdown-item').click(function(){
+                          var visibleItem = $('.dropdown-toggle', $(this).closest('.dropdown'));
+                          visibleItem.text($(this).attr('value'));
+                      });
+                  });
+              </script>
+
               <button type="submit" class="btn btn-primary">追加</button>
             </form>
           </div>

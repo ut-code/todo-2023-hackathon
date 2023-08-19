@@ -57,8 +57,6 @@ app.post("/output", async (request, response) => {
 });
 
 app.post("/edit", (request, response) => {
-  const html = fs.readFileSync("input.html", "utf8");
-  response.send(html);
 });
 
 app.post("/output", (request, response) => {
