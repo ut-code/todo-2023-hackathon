@@ -10,7 +10,17 @@ const client = new PrismaClient();
 async function main(request, response, userId) {
   const tasks = await client.task.findMany({ where: { userId } });
   const template = fs.readFileSync("output.ejs", "utf8");
-  const html = ejs.render(template, { tasks: tasks });
+  const tasksForDisplay = tasks.map((task) => {
+    return {
+      id: task.id,
+      name: task.name,
+      due: `${task.due.getFullYear()}/${
+        task.due.getMonth() + 1
+      }/${task.due.getDate()}`,
+      isImportant: task.isImportant,
+    };
+  });
+  const html = ejs.render(template, { tasks: tasksForDisplay });
   response.send(html);
 }
 
@@ -18,7 +28,17 @@ async function push(request, response, userId, name, due, isImportant) {
   await client.task.create({ data: { userId, name, due, isImportant } });
   const tasks = await client.task.findMany({ where: { userId } });
   const template = fs.readFileSync("output.ejs", "utf8");
-  const html = ejs.render(template, { tasks: tasks });
+  const tasksForDisplay = tasks.map((task) => {
+    return {
+      id: task.id,
+      name: task.name,
+      due: `${task.due.getFullYear()}/${
+        task.due.getMonth() + 1
+      }/${task.due.getDate()}`,
+      isImportant: task.isImportant,
+    };
+  });
+  const html = ejs.render(template, { tasks: tasksForDisplay });
   response.send(html);
 }
 
